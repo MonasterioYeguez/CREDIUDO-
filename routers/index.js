@@ -5,14 +5,46 @@ var nl2br  = require('nl2br');// paquete para reconocer los saltos de lineas al 
 
 router.get('/', function(req, res){
 	if(req.session.hasOwnProperty('cedula')) {
-     res.render('index-web-principal-definitivo', {session: req.session})
+
+		models.Evaluacion.findOne({})
+		.then(function(Evaluacion){
+         res.render('index-web-principal-definitivo', {session: req.session, dataEvaluacion:Evaluacion})
+		})
+     
 	}else{
 
-   res.render('index-web-principal-definitivo', {session: req.session})
+        models.Evaluacion.findOne({where: {tipo: 'administrativos'}})
+		.then(function(Evaluacion){
+			models.Evaluacion.findOne({where: {tipo:'centros'}})
+			.then(function(Evaluacion1){
+				
 
+				res.render('index-web-principal-definitivo', {session: req.session, dataEvaluacion:Evaluacion,dataEvaluacion1:Evaluacion1})
+               console.log('Administravos Evaluacion', Evaluacion)
+               console.log(' Centros evaluacion', Evaluacion1)
+
+				
+				
+			})
+		})
+
+
+            
 	}
 //res.render('Crear-usuario-perfil-master');
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get('/informacion', function(req, res){
 	models.Unidad.findOne({where:{codigo: '12'}})

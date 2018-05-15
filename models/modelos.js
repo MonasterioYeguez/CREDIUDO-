@@ -154,7 +154,8 @@ module.exports.Galeria = Galeria;
 //   14======================================================modelo Cargo
 var Cargo = sequelize.define('Cargo', {
 	codigo:  {type: Sequelize.INTEGER, primaryKey: true},
-	descripcion: Sequelize.STRING(100)
+	descripcion: Sequelize.STRING(100), 
+	referencia: Sequelize.STRING(100)
 	
 })
 
@@ -164,6 +165,7 @@ module.exports.Cargo = Cargo;
 //   15======================================================modelo Sub_comision
 var Sub_comision = sequelize.define('Sub_comision', {
 	codigo:  {type: Sequelize.INTEGER, primaryKey: true},
+
 	nombre: Sequelize.STRING(100),
 	informacion:Sequelize.STRING(1000),
 	ruta: Sequelize.STRING(2000)
@@ -235,11 +237,10 @@ const Item = sequelize.define('items', {
 
 
 
-const Evaluacion = sequelize.define('evaluaciones', {
+const Evaluacion = sequelize.define('Evaluacion', {
   tipo: Sequelize.ENUM('administrativos', 'centros'),
   name: Sequelize.STRING,
-  nucleo: Sequelize.ENUM('anz', 'bol', 'mon', 'nuv_esp', 'suc'),
-  unidad: Sequelize.ENUM('todos', 'dep_mate', 'dep_inf'),
+  enfoque: Sequelize.ENUM('Auto-Evaluacion', 'Jefe-Subordinado', 'Subordinado-Jefe', 'Co-Evaluación'),
   cantidad: Sequelize.INTEGER,
   inicio: Sequelize.DATE,
   fin: Sequelize.DATE
@@ -290,10 +291,15 @@ Instrument.hasMany(Item)
 Item.belongsTo(Instrument)
 
 //relaciones modelos Monasterio
-	Unidad.hasMany(Informe, {foreignKey: 'codigo_unidad'}); // relacion uno a muchoo unidad informe clave foranea esta en informe
+	Unidad.hasMany(Evaluacion, {foreignKey: 'codigo_unidad'}); // relacion uno a muchoo unidad informe clave foranea esta en informe
+	Evaluacion.belongsTo(Unidad, { foreignKey: 'codigo_unidad', onDelete: 'CASCADE', });
+
+	Unidad.hasMany(Evaluacion, {foreignKey: 'codigo_unidad'}); // relacion uno a muchoo unidad informe clave foranea esta en informe
+	Evaluacion.belongsTo(Unidad, { foreignKey: 'codigo_unidad', onDelete: 'CASCADE', });
+
+
+    Unidad.hasMany(Informe, {foreignKey: 'codigo_unidad'}); // relacion uno a muchoo unidad informe clave foranea esta en informe
 	Informe.belongsTo(Unidad, { foreignKey: 'codigo_unidad', onDelete: 'CASCADE', });
-
-
 
 
 	Unidad.hasMany(Boletines, {foreignKey: 'codigo_unidad'});
@@ -322,8 +328,9 @@ Item.belongsTo(Instrument)
 	//relacion uno a uno entre los modelos
 			//Relacion personal
 
-	Personal.hasOne(Tipo_p,{ foreignKey: 'cedula_personal'}); // existe dos metodos este agrega la clave foranea de personal en tipo_p
-   
+	
+    Tipo_p.hasMany(Personal, {foreignKey: 'codigo_tipo'}); // relacion uno a muchoo unidad informe clave foranea esta en informe
+	Personal.belongsTo(Tipo_p, { foreignKey: 'codigo_tipo', onDelete: 'CASCADE', });
 
 
 	// relacion muchos a muchos

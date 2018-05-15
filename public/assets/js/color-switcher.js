@@ -50,19 +50,7 @@ jQuery(document).ready(function($) {
 	});
 
 
-	$("#color-style-switcher .bottom a.settings").click(function(e){
-		e.preventDefault();
-		var div = $("#color-style-switcher");
-		if (div.css("left") === "-189px") {
-			$("#color-style-switcher").animate({
-				left: "0px"
-			}); 
-		} else {
-			$("#color-style-switcher").animate({
-				left: "-189px"
-			});
-		}
-	})
+
 
 	$("ul.colors li a").click(function(e){
 		e.preventDefault();
@@ -78,21 +66,4 @@ jQuery(document).ready(function($) {
 jQuery('head').append('<link rel="stylesheet" id="colors" href="assets/css/colors/green.css" type="text/css" />');
 jQuery('head').append('<link rel="stylesheet" href="assets/css/color-switcher.css" type="text/css" />'); 
 
-jQuery('body').append('' + 
-	'<div id="color-style-switcher">' +
-		'<div>' + 
-			'<h3>Color Palette</h3>' +
-			'<ul class="colors">' +
-				'<li><a class="color1 active" href="#"></a></li>' +
-				'<li><a class="color2" href="#"></a></li>' +
-				'<li><a class="color3" href="#"></a></li>' +
-				'<li><a class="color4" href="#"></a></li>' +
-				'<li><a class="color5" href="#"></a></li>' +
-				'<li><a class="color6" href="#"></a></li>' +
-				'<li><a class="color7" href="#"></a></li>' +
-				'<li><a class="color8" href="#"></a></li>' +
-			'</ul>' +
-		'</div>' +
-		'<div class="bottom"> <a href="#" class="settings"><i class="icon-equalizer"></i></a> </div>' +
-	'</div>' +
-'');
+

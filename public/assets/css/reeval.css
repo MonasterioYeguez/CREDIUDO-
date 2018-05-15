@@ -151,9 +151,7 @@
 	
 	border-radius: 5px;
 	background-color: #e5e5e5;
-	
 	padding: auto;
-	
 	border:1px solid black;
 
 }
@@ -164,6 +162,7 @@
 	background-color: white;
 	padding: auto;
 	border:1px solid black;
+	margin-bottom: 20px;
 }
 #nfactor{         /*agg pedro*/ 
 font-size: 15px;
@@ -180,10 +179,9 @@ top:4px;
 .botones2{         /*agg pedro*/
 	font-weight: 500;
 	border-radius: 2px;
-	margin-top: 20px;
+	margin-top: 5px;
 	background-color: #d5f6ffeb;
 	color: black;
-	float: right;
 	margin-bottom: 20px;
 }
 .botones1{         /*agg pedro*/
@@ -292,3 +290,7 @@ top:4px;
     background-color: #e6e6e6;
     border-color: #adadad;
     }
+
+.p {
+    padding: 0px 0px 40px;
+}
