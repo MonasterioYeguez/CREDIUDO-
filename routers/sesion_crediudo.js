@@ -46,6 +46,7 @@ if(!req.body.cedula || !req.body.password){
         	console.log('estas en la seccio de presidente Cargo codigo', Cargo.codigo )
 
                  res.render('./usuario_master/buscar_usuario', {session: req.session})
+        
          }else if(Cargo.codigo =='2'){
           models.Instrument.findAll({})
           .then(function(Instrument){ res.render('instrumento/index_3', {dataInstrument:Instrument, session: req.session})

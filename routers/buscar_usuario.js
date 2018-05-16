@@ -138,27 +138,7 @@ console.log(Cargo)
     
      })
   
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //================================================================================
-
 router.post('/modificar', function(req, res){
    models.Personal.update({
     email: req.body.correo,

@@ -8,18 +8,19 @@ router.use('/', function(req, res, next){
   if(req.session.hasOwnProperty('cedula')) {
    next();
      }else{
-      models.Evaluacion.findOne({where: {tipo: 'administrativos'}})
-    .then(function(Evaluacion){
-      models.Evaluacion.findOne({where: {tipo:'centros'}})
-      .then(function(Evaluacion1){
-         res.render('index-web-principal-definitivo', {session: req.session, dataEvaluacion:Evaluacion,dataEvaluacion1:Evaluacion1})
-               console.log('Administravos Evaluacion', Evaluacion)
-               console.log(' Centros evaluacion', Evaluacion1)
-      })
-    })
-}
+    
+  res.render('./sesion_crediudo/index-admin')
+               
+ }    
 
 });
+
+router.get('/', function(req, res){
+  models.Instrument.findAll({})
+  .then(function(Instrument){
+    res.render('./instrumento/index_3', {dataInstrument:Instrument})
+  })
+})
 
 /*===================================INSTRUMENTOS=========================================*/
     /*===============ADD INSTRUMENTO=======================*/
