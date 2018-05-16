@@ -52,7 +52,14 @@ if(!req.body.cedula || !req.body.password){
            });
          
           
+         }else if(Cargo.codigo =='3'){
+         models.Nucleo.findAll({})
+           .then(function(Nucleo){ res.render('./coor_planificacion/gestionar-evaluacion', {dataNucleo:Nucleo}) }) 
+           
+         
+          
          }
+
           } 
         })
         .catch(function(){

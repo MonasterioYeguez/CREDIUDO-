@@ -4,12 +4,21 @@ let models = require('../models/modelos')
 
 //MUY UTIL: res.status(201).send(todo)
 
-router.get('/', function(req,res){
-  models.Instrument.findAll({
-  })
-  .then(function(Instrument){
-    res.render('instrumento/visualizar', {dataInstrument:Instrument})
-  });
+router.use('/', function(req, res, next){
+  if(req.session.hasOwnProperty('cedula')) {
+   next();
+     }else{
+      models.Evaluacion.findOne({where: {tipo: 'administrativos'}})
+    .then(function(Evaluacion){
+      models.Evaluacion.findOne({where: {tipo:'centros'}})
+      .then(function(Evaluacion1){
+         res.render('index-web-principal-definitivo', {session: req.session, dataEvaluacion:Evaluacion,dataEvaluacion1:Evaluacion1})
+               console.log('Administravos Evaluacion', Evaluacion)
+               console.log(' Centros evaluacion', Evaluacion1)
+      })
+    })
+}
+
 });
 
 /*===================================INSTRUMENTOS=========================================*/

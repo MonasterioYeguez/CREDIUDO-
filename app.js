@@ -33,6 +33,7 @@ var cerrar = require('./routers/cerrar.js');
 var portal = require('./routers/portal.js');
 var sesion_crediudo = require('./routers/sesion_crediudo.js');
 var evaluacion = require('./routers/evaluacion.js')
+var usuario_udo = require('./routers/usuario_udo.js')
 //var personal = require ('./routers/personal.js')
 //var nucleo = require ('./routers/nucleo.js')
 
@@ -50,6 +51,7 @@ app.use('/cerrar', cerrar);
 app.use('/portal', portal);
 app.use('/sesion_crediudo', sesion_crediudo);
 app.use('/evaluacion', evaluacion);
+app.use('/usuario_udo', usuario_udo);
 //app.use('/indexSucre', indexSucre);
 //app.use('/indexMonagas', indexMonagas);
 //app.use('/indexBolivar', indexBolivar);

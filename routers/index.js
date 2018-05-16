@@ -6,32 +6,27 @@ var nl2br  = require('nl2br');// paquete para reconocer los saltos de lineas al 
 router.get('/', function(req, res){
 	if(req.session.hasOwnProperty('cedula')) {
 
-		models.Evaluacion.findOne({})
-		.then(function(Evaluacion){
-         res.render('index-web-principal-definitivo', {session: req.session, dataEvaluacion:Evaluacion})
-		})
-     
-	}else{
-
-        models.Evaluacion.findOne({where: {tipo: 'administrativos'}})
+		 models.Evaluacion.findOne({where: {tipo: 'administrativos'}})
 		.then(function(Evaluacion){
 			models.Evaluacion.findOne({where: {tipo:'centros'}})
 			.then(function(Evaluacion1){
-				
-
-				res.render('index-web-principal-definitivo', {session: req.session, dataEvaluacion:Evaluacion,dataEvaluacion1:Evaluacion1})
+			   res.render('index-web-principal-definitivo', {session: req.session, dataEvaluacion:Evaluacion,dataEvaluacion1:Evaluacion1})
                console.log('Administravos Evaluacion', Evaluacion)
                console.log(' Centros evaluacion', Evaluacion1)
-
-				
-				
-			})
+ 			})
 		})
+     }else{
+      models.Evaluacion.findOne({where: {tipo: 'administrativos'}})
+		.then(function(Evaluacion){
+			models.Evaluacion.findOne({where: {tipo:'centros'}})
+			.then(function(Evaluacion1){
+			   res.render('index-web-principal-definitivo', {session: req.session, dataEvaluacion:Evaluacion,dataEvaluacion1:Evaluacion1})
+               console.log('Administravos Evaluacion', Evaluacion)
+               console.log(' Centros evaluacion', Evaluacion1)
+ 			})
+		})
+}
 
-
-            
-	}
-//res.render('Crear-usuario-perfil-master');
 });
 
 

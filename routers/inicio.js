@@ -45,12 +45,15 @@ if(!req.body.cedula || !req.body.password){
           console.log(' el personal no es crediudo')
         })
 
-         // console.log('la cedula req.session.cedula ', req.session.cedula)
-         // req.session.role = dataPersonal.role;
-          
-         // console.log(req.session.role);
-         
-          res.render('./index-web-principal-definitivo', {session:req.session})
+        models.Evaluacion.findOne({where: {tipo: 'administrativos'}})
+    .then(function(Evaluacion){
+      models.Evaluacion.findOne({where: {tipo:'centros'}})
+      .then(function(Evaluacion1){
+         res.render('index-web-principal-definitivo', {session: req.session, dataEvaluacion:Evaluacion,dataEvaluacion1:Evaluacion1})
+               console.log('Administravos Evaluacion', Evaluacion)
+               console.log(' Centros evaluacion', Evaluacion1)
+      })
+    })
         } else {
          console.log('error al iniciar sesion 1')
         }

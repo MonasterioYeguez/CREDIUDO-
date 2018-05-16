@@ -328,9 +328,9 @@ Item.belongsTo(Instrument)
 	//relacion uno a uno entre los modelos
 			//Relacion personal
 
-	
-    Tipo_p.hasMany(Personal, {foreignKey: 'codigo_tipo'}); // relacion uno a muchoo unidad informe clave foranea esta en informe
-	Personal.belongsTo(Tipo_p, { foreignKey: 'codigo_tipo', onDelete: 'CASCADE', });
+   //lo quite para la presentacion	
+   // Tipo_p.hasMany(Personal, {foreignKey: 'codigo_tipo'}); // relacion uno a muchoo unidad informe clave foranea esta en informe
+	//Personal.belongsTo(Tipo_p, { foreignKey: 'codigo_tipo', onDelete: 'CASCADE', });
 
 
 	// relacion muchos a muchos

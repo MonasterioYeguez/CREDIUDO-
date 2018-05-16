@@ -8,13 +8,6 @@ var formidable = require('express-formidable');
 var FormData = require('form-data');
 
 
-router.use(function(req, res, next) {
-  if(req.session.hasOwnProperty('cedula')){
-    next();
-  }else {
-    res.render('index-web-principal-definitivo', {session: req.session})
-  }
-})
 
 //=============================================listar usuario
 router.get('/', function(req, res){
@@ -41,7 +34,7 @@ router.post('/actualizar',function(req, res){
 		objetivos: req.body.objetivos,
 		funcion: req.body.funcion,
 		etapa: req.body.etapa
-	 },{where:{codigo: '3'}})
+	 },{where:{codigo: '12'}})
 		.then(function(Unidad){ models.Unidad.findOne({where: {codigo: '12'}})
 			.then(function(Unidad1){
 				

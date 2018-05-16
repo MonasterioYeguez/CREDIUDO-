@@ -4,16 +4,25 @@ var models = require('../models/modelos')
 var Sequelize = require('sequelize');
 var Op = Sequelize.Op;
 
+/*
+router.use('/', function(req, res, next){
+  if(req.session.hasOwnProperty('cedula')) {
+   next();
+     }else{
+      models.Evaluacion.findOne({where: {tipo: 'administrativos'}})
+    .then(function(Evaluacion){
+      models.Evaluacion.findOne({where: {tipo:'centros'}})
+      .then(function(Evaluacion1){
+         res.render('index-web-principal-definitivo', {session: req.session, dataEvaluacion:Evaluacion,dataEvaluacion1:Evaluacion1})
+               console.log('Administravos Evaluacion', Evaluacion)
+               console.log(' Centros evaluacion', Evaluacion1)
+      })
+    })
+}
 
-router.use(function(req, res, next) {
-  if(req.session.hasOwnProperty('cedula')){
-    next();
-  }else {
-    res.render('index-web-principal-definitivo', {session: req.session})
-  }
-})
+});
 
-
+*/
 //=============================================listar usuario
 router.get('/', function(req, res){
   //models.Personal.findAll().then(function(Personal){
@@ -111,16 +120,17 @@ router.get('/modificar_usuario', function(req, res){
 */
 
 router.get('/modificar_usuario', function(req, res){
-
-      models.Cargo.findAll({ where:{codigo_unidad:'3'}})
+console.log('estamos aqui')
+      models.Cargo.findAll({ where:{codigo_unidad:'12', cedula_personal:{[Op.ne]: null }}})
       .then(function(Cargo){
-        models.Cargo.findAll({ include: [models.Personal],
-           where:{cedula_personal:{[Op.ne]: null,  }}
+console.log(Cargo)
+        models.Cargo.findAll({ include: [models.Personal], where:{cedula_personal:{[Op.ne]: null }}
         })
         .then(function(Cargo1){
+          console.log(Cargo1)
           console
           res.render('./usuario_master/modificar-usuario-master', {dataCargo:Cargo1, session: req.session})
-
+        
         })
       
       })
